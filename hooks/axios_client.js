@@ -7,7 +7,8 @@ const api = axios.create(
 )
 
 export const gpsApi = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_GPS_API
+    headers: {"Access-Control-Allow-Origin": "*"},
+    baseURL: 'http://localhost:3030/api'//process.env.NEXT_PUBLIC_GPS_API
 })
 
 export default api

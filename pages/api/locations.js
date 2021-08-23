@@ -16,7 +16,7 @@ export default async (req, res) => {
     }
     if (method === "POST") { 
         const location = new petLocations(req.body)        
-        location.save((err, room) => {
+        await location.save((err, room) => {
             if (err) {
                 res.status(400).send(err)
                 return

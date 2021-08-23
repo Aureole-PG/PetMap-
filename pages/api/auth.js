@@ -17,7 +17,7 @@ export default async (req, res) => {
         else{
             
             const User = new UserModel(req.body)
-            User.save((err, room) => {
+            await User.save((err, room) => {
                 
                 if (err) {
                  

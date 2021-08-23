@@ -1,10 +1,10 @@
-html,
+/* html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+} */
 
 a {
   color: inherit;
@@ -13,4 +13,55 @@ a {
 
 * {
   box-sizing: border-box;
+}
+.pet-info-container {
+  height: 100vh;
+  position: relative;
+}
+.pet-info-header-container {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.87);
+  width: 80vw;
+  left: 50%;
+  box-shadow: 0px 0px 20px 0px black;
+  transform: translate(-50%, 0%);
+}
+@media (max-width: 411px) {
+  .pet-info-header-container {
+    left: 45%;
+  }
+}
+.pet-info-body-container {
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+.text-title {
+  letter-spacing: 0.3rem;
+  margin: 5px 0;
+  font-size: 2rem;
+}
+.text-subtitle {
+  font-size: 1.3rem;
+  margin: 5px 0;
+  color: rgb(58, 58, 58);
+  letter-spacing: 0.2rem;
+}
+.text-info- {
+  font-size: 1rem;
+  color: rgb(58, 58, 58);
+  letter-spacing: 0.2rem;
+}
+.centered-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.no-margin {
+  margin: 0;
+}
+.height {
+  height: 100%;
 }

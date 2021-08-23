@@ -4,6 +4,7 @@ import AuthContext from '../context/authContext';
 import jwt from 'jsonwebtoken'
 import {setToken, getToken, deleteToken} from './api/token'
 import Router from "next/router";
+import '../styles/globals.css'
 function MyApp({ Component, pageProps }) {
   const [auth, setAuth] = useState(undefined)
   const [reloadUser, setReloadUSer] =  useState(false)

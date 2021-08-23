@@ -5,7 +5,7 @@ export default async (req, res) => {
   const { method } = req;
   try {
     if (method === "GET") {         
-        petModel.find(req.query,(err, room) => {
+        await petModel.find(req.query,(err, room) => {
             if (err) {
                 res.status(400).send(err)
                 return
