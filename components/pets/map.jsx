@@ -1,49 +1,36 @@
 /*global google*/
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-  D,
-} from "react-google-maps";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 export const MapContainer = ({ allowUser, userPosition, petPosition }) => {
   const defaultOptions = {
     mapTypeControlOptions: {
       position: "RIGHT_TOP",
-      mapTypeIds: ["roadmap", "satellite", "custom-map"],
+      mapTypeIds: ["roadmap", "satellite"],
     },
     zoomControl: false,
     fullscreenControl: false,
     streetViewControl: false,
   };
-
   return (
     <>
-      <CMap
-        isMarkerShown
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_KEY}&libraries=geometry,drawing,places`}
-        loadingElement={<div className="window-height" />}
-        containerElement={<div className="window-height" />}
-        mapElement={<div style={{ height: `100%` }} />}
-        center={{ lat: -0.1081339, lng: -78.4699519 }}
-        defaultOptions={defaultOptions}
-      >
-        <Marker position={{ lat: -0.1081339, lng: -78.4699519 }} />
-        {allowUser && <Marker position={userPosition} />}
-      </CMap>
+      <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_KEY}>
+        <GoogleMap
+          mapContainerClassName={"window-height"}
+          options={defaultOptions}
+          center={petPosition}
+          zoom={10}
+        >
+          <Marker
+            icon={{
+              url: "/static/pet_gps.png",
+              size: { width: 100, height: 100 },
+              anchor: { x: 50, y: 50 },
+              scaledSize: { width: 50, height: 50 },
+            }}
+            position={petPosition}
+          />
+          {allowUser && <Marker position={userPosition} />}
+        </GoogleMap>
+      </LoadScript>
     </>
   );
 };
-
-const CMap = withScriptjs(
-  withGoogleMap((props) => (
-    <GoogleMap
-      defaultZoom={15}
-      defaultCenter={props.defaultCenter}
-      center={props.center}
-      defaultOptions={props.defaultOptions}
-    >
-      {props.children}
-    </GoogleMap>
-  ))
-);

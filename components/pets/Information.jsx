@@ -1,6 +1,12 @@
 import React from "react";
 import { Row, Col, Badge, Button, Container } from "reactstrap";
-export const Information = ({ direction, pet, allowUser, distancia }) => {
+export const Information = ({
+  direction,
+  pet,
+  allowUser,
+  distancia,
+  btn_event,
+}) => {
   return (
     <div className="pet-info-header-container">
       <Container className="themed-container" fluid={true}>
@@ -36,12 +42,18 @@ export const Information = ({ direction, pet, allowUser, distancia }) => {
           <Col className="d-flex align-items-center justify-content-between">
             <div className="d-flex align-items-center">
               <p className="text-info- text-secondary no-margin ">estado: </p>
-              <Badge style={{ marginInline: 10 }} color="primary" pill>
-                Cerca
+              <Badge
+                style={{ marginInline: 10 }}
+                color={distancia < 1 ? "primary" : "danger"}
+                pill
+              >
+                {distancia < 1 ? "cerca" : "lejos"}
               </Badge>
             </div>
 
-            <Button color="secondary">Configuracion</Button>
+            <Button onClick={btn_event} color="secondary">
+              Configuracion
+            </Button>
           </Col>
         </Row>
       </Container>
