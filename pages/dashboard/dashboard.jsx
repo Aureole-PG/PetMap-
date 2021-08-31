@@ -15,49 +15,41 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { AiFillPlusCircle } from "react-icons/ai";
-import { userId } from "../api/token";
+import { userId } from "../../hooks/token";
 import api from "../../hooks/axios_client";
+import Loading from "../../components/loading";
 function Dashboard() {
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   useEffect(() => {
-    api
-      .get("/getPets?user_id=" + userId())
-      .then((e) => {
-        setPets(e.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
-      });
+    if (userId()) {
+      api
+        .get("/getPets?user_id=" + userId())
+        .then((e) => {
+          setPets(e.data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setLoading(false);
+        });
+    } else {
+      router.replace("/");
+    }
   }, []);
   const viewPet = (id) => {
     setLoading(true);
     router.push(`/dashboard/${id}`);
   };
   if (loading) {
-    return (
-      <div style={{ height: "100vh" }} className="row align-items-center">
-        <div className="col">
-          <div className="d-flex justify-content-center">
-            <ReactLoading
-              type={"bubbles"}
-              color={"#00b0ff"}
-              height={"20%"}
-              width={"20%"}
-            />
-          </div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   } else {
     return (
       <Container>
         <Row>
           {pets.map((pet) => (
             <Col key={pet._id} xs="12" sm="12" md="5" lg="3">
-              <Card style={{ height: 400 }}>
+              <Card style={{ height: 400, marginBlock: 20 }}>
                 <div className="mx-auto" style={{ borderRadius: "50px" }}>
                   <Image src="/pet_a.svg" width={200} height={200} />
                 </div>

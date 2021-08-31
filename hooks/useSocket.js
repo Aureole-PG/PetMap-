@@ -5,7 +5,7 @@ export const  useSocket= (token)=> {
     const [ online, setOnline ] = useState(false);
 
     const conectarSocket = useCallback( (id) => {
-        const socketTemp = io.connect( "http://localhost:3030", { 
+        const socketTemp = io.connect( process.env.NEXT_PUBLIC_GPS_API, { 
             transports: ['websocket'],
             autoConnect: true,
             // forceNew: true,

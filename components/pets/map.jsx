@@ -22,8 +22,8 @@ export const MapContainer = ({ allowUser, userPosition, petPosition }) => {
           <Marker
             icon={{
               url: "/static/pet_gps.png",
-              size: { width: 100, height: 100 },
-              anchor: { x: 50, y: 50 },
+              size: { width: 50, height: 50 },
+              anchor: { x: 25, y: 50 },
               scaledSize: { width: 50, height: 50 },
             }}
             position={petPosition}

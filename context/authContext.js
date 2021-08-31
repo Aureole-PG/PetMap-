@@ -1,18 +1,10 @@
 import {createContext, useEffect,useState,  useMemo} from 'react'
 import jwt from 'jsonwebtoken'
-import {deleteToken, getToken, setToken } from '../pages/api/token';
+import {deleteToken, getToken, setToken } from '../hooks/token';
 import Router from "next/router";
 const AuthContext = createContext()
-const initialState = {
-    _id : undefined,
-    auth: undefined,
-    login: ()=> null,
-    logout : ()=> null,
-    setReloader: ()=> null
-}
-
 export const AuthProvider =({children})=>{
-    const [auth, setAuth] = useState(initialState);
+    const [auth, setAuth] = useState(null);
     const [reloadUser, setReloadUSer] =  useState(false)
 
 
@@ -28,9 +20,12 @@ export const AuthProvider =({children})=>{
         
         }else{
             setAuth(null)
-            Router.replace("/login");
+            Router.replace("/");
         }
-        setReloadUSer(false)
+        return()=>{
+          setReloadUSer(false)
+        }
+        
     }, [reloadUser])
 
 
@@ -41,7 +36,10 @@ export const AuthProvider =({children})=>{
             token: token,
             ...decodeToken
             })
-        setReloadUSer(true)
+            return()=>{
+              setReloadUSer(true)
+            }
+        
     }
     const logOut =()=>{
     if (auth){

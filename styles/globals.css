@@ -61,3 +61,10 @@ a {
 .height {
   height: 100%;
 }
+
+.cursor {
+  cursor: pointer;
+}
+.cursor-arrow {
+  cursor: default;
+}

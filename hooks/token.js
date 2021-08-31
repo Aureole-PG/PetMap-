@@ -9,8 +9,11 @@ export function getToken() {
 
 export function userId(){
     let response = localStorage.getItem("token") 
+    if (response) {
+        return jwt.decode(response).id
+    }  
+    return false
     
-    return jwt.decode(response).id
 }
 
 export function deleteToken(){

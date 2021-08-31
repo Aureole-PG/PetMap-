@@ -7,13 +7,13 @@ export const SocketProvider =({children})=>{
     const {auth} = useAuth()
     const {conectarSocket,desconectarSocket,socket} = useSocket()
     useEffect(()=>{
-        console.log("___________________",auth.id)
-        if (auth !== undefined || auth !== "undefined") {
+        if (auth !== null) {
             conectarSocket(auth.id)
         }
     },[auth])
     useEffect(()=>{
-        if (!auth) {
+        if (auth === null) {
+            console.log("desconectado")
             desconectarSocket()
         }
     },[auth])

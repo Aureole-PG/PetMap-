@@ -22,12 +22,12 @@ export default function Layout({ children }) {
   return (
     <>
       <Navbar color="light" light expand="md">
-        <NavbarBrand>PetMap</NavbarBrand>
+        <NavbarBrand className="cursor-arrow">PetMap</NavbarBrand>
 
         <NavbarToggler onClick={toggle} />
         <Collapse className="float-left" isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem>
+            <NavItem className="cursor">
               <Link href="/dashboard">
                 <NavLink>Tus Mascotas</NavLink>
               </Link>
